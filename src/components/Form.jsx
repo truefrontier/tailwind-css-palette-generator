@@ -99,6 +99,10 @@ const Form = ({
     color[tweaks.name] = { palettes: palettes[tweaks.name], tweaks };
     setColors({ ...colors, ...color });
     setTweaks({ ...tweaks, hex: Object.values(palettes)[0]['500'].hex });
+    localStorage.setItem(
+      `${tweaks.name} ${new Date()}`,
+      JSON.stringify(palettes[tweaks.name]),
+    );
     return false;
   }
 
