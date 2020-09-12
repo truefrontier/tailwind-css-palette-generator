@@ -6,7 +6,10 @@ const Swatch = ({ swatch, color }) => {
   return (
     <div className="flex flex-col justify-center items-start flex-1 w-full">
       <div
-        style={{ backgroundColor: hex, transitionDelay: `${swatch / 2}ms` }}
+        style={{
+          backgroundColor: `hsla(${h},${s}%,${l}%)`,
+          transitionDelay: `${swatch / 2}ms`,
+        }}
         className="transition-colors duration-200 shadow-inner rounded p-2 pt-12 w-full leading-none"
       >
         <span className="opacity-50 font-mono text-xs">{swatch}</span>
