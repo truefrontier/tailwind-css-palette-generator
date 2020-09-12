@@ -30,7 +30,7 @@ export function createHueScale(tweakValue) {
   ];
 }
 
-export function createDistributionValues(min, max, lightness) {
+export function createDistributionValues(min, max, lightness, weighted = true) {
   const maxLightness = parseInt(max) || 100;
   const maxStep = (maxLightness - lightness) / 4;
 
@@ -39,13 +39,13 @@ export function createDistributionValues(min, max, lightness) {
 
   return [
     Math.round(lightness + maxStep * 4), // Should equal tweakMin, close to 100, lightest colour
-    Math.round(lightness + maxStep * 3),
-    Math.round(lightness + maxStep * 2),
-    Math.round(lightness + maxStep * 1),
+    Math.round(lightness + maxStep * (weighted ? 3.3 : 3)),
+    Math.round(lightness + maxStep * (weighted ? 2.6 : 2)),
+    Math.round(lightness + maxStep * (weighted ? 1.6 : 3)),
     Math.round(lightness), // Lightness of original colour
-    Math.round(minLightness + minStep * 3),
-    Math.round(minLightness + minStep * 2),
-    Math.round(minLightness + minStep),
+    Math.round(minLightness + minStep * (weighted ? 2.4 : 3)),
+    Math.round(minLightness + minStep * (weighted ? 1.4 : 2)),
+    Math.round(minLightness + minStep * (weighted ? 0.7 : 1)),
     Math.round(minLightness), // Should equal tweakMax, close to 0, darkest colour
   ];
 }
